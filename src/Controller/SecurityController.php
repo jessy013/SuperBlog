@@ -33,8 +33,11 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
-     public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils):Response
     {
-         if ($this->getUser()) {
-             return $this->redirectToRoute('homepage');
+        if($this->getUser()){
+            return $this->redirectToRoute('homepage');
         }
+        return $this->render('security/login.html.twig', []);
+    }
+}
